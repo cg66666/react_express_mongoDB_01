@@ -1,0 +1,176 @@
+.App {
+  display: flex;
+  background-image: url("./static/login-top.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 105.5%;
+  // width: 1535px;
+  // height: 753px;
+  // min-width: 1920PX;
+  // min-height: 1080PX;
+}
+
+.logo-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.App-logo {
+  height: 150px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 10s linear;
+  }
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.menu {
+  display: flex;
+  font-size: 18px;
+  top: 58px;
+  left: 25px;
+  position: absolute;
+  div {
+    position: relative;
+    margin-right: 45px;
+    color: #21ebff;
+    cursor: pointer;
+    height: 45px;
+    width: 130px;
+    text-align: center;
+    line-height: 45px;
+    text-transform: uppercase;
+    text-transform: uppercase;
+    &:nth-child(1) {
+      filter: hue-rotate(90deg);
+    }
+
+    &:nth-child(3) {
+      filter: hue-rotate(180deg);
+    }
+    // c74134
+    &:nth-child(4) {
+      filter: hue-rotate(270deg);
+    }
+    &:hover {
+      background: #21ebff;
+      color: #111;
+      box-shadow: 0 0 50px #21ebff;
+      transition-delay: 0.5s;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      border-top: 4px solid #21ebff;
+      border-left: 4px solid #21ebff;
+      transition: 0.5s;
+      transition-delay: 0.5s;
+    }
+    &:hover::before {
+      width: 100%;
+      height: 100%;
+      transition-delay: 0s;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 10px;
+      height: 10px;
+      border-bottom: 4px solid #21ebff;
+      border-right: 4px solid #21ebff;
+      transition: 0.5s;
+      transition-delay: 0.5s;
+    }
+    &:hover::after {
+      width: 100%;
+      height: 100%;
+      transition-delay: 0s;
+    }
+  }
+}
+
+
+
+
+.someText{
+  color: white;
+  font-size: 23px;
+  position: absolute;
+  // bottom:60px;
+  top: 650px;
+  text-align: center;
+  width: 100%;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate1 {
+  0% {
+      left: -100%;
+  }
+
+  100% {
+      left: 100%;
+  }
+}
+
+@keyframes animate3 {
+  0% {
+      left: 100%;
+  }
+
+  100% {
+      left: -100%;
+  }
+}
+
+@keyframes animate1 {
+  0% {
+      left: -100%;
+  }
+
+  100% {
+      left: 100%;
+  }
+}
+
+@keyframes animate2 {
+  0% {
+      top: -100%;
+  }
+
+  100% {
+      top: 100%;
+  }
+}
+
+@keyframes animate4 {
+  0% {
+      top: 100%;
+  }
+
+  100% {
+      top: -100%;
+  }
+}

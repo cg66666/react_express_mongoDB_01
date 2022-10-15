@@ -1,0 +1,76 @@
+.App {
+  display: flex;
+
+  min-height: 98vh;
+  min-width: 98vh;
+}
+
+.App-image {
+  background-image: url("./static/login.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+.header-bar {
+  background-image: url('./static/login-top.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 212.9vh;
+  position: absolute;
+  height: 100vh;
+  z-index: -10;
+}
+
+.logo-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  /* top: 3%; */
+}
+
+.App-logo {
+  /* margin-top: 100px; */
+  height: 20vh;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 10s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.menu {
+  display: flex;
+  min-height: 98vh;
+  font-size: 20px;
+}
+
+/* .menu div {
+  
+} */
+
+/* .bottom-bar {
+  background-image: url("./static/buttom-login(2).jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%; */
+  /* background: red; */
+  /* width: 203.5vh;
+  height: 22vh;
+  position: absolute;
+  bottom: 0;
+} */
+

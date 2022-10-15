@@ -1,0 +1,176 @@
+.center-Img {
+  background-image: url("../../static/login.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  width: 100%;
+  height: 435px;
+  position: absolute;
+  left: 0;
+  top: 165px;
+  .loader-login {
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    line-height: 140px;
+    position: absolute;
+    right: 50%;
+    top: 40px;
+    width: 99px;
+    height: 180px;
+    overflow: hidden;
+    .text {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 33px;
+      top: 6%;
+      line-height: 75px;
+      color: #03e9f4;
+      text-shadow: 0 0 0.5em #03e9f4, 0 0 0.2em #5c5c5c;
+      font-weight: bolder;
+    }
+    span {
+      position: absolute;
+      display: block;
+    }
+    .bar1 {
+      border-radius: 20%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 13px;
+      background: linear-gradient(90deg, transparent, #03e9f4);
+      animation-delay: 0;
+      transition: all 2s;
+    }
+    .bar3 {
+      border-radius: 20%;
+      bottom: 0;
+      width: 100%;
+      height: 13px;
+      background: linear-gradient(270deg, transparent, #03e9f4);
+      animation-delay: 0;
+    }
+    .bar2 {
+      border-radius: 20%;
+      right: 0;
+      width: 13px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, #03e9f4);
+      animation-delay: 1s;
+      transition: all 2s;
+    }
+    .bar4 {
+      border-radius: 20%;
+      left: 0;
+      width: 13px;
+      height: 100%;
+      background: linear-gradient(0deg, transparent, #03e9f4);
+      animation-delay: 1s;
+      transition: all 2s;
+    }
+    &:hover {
+      .bar1 {
+        background: linear-gradient(90deg, transparent, #03e9f4);
+        animation: animate1 0.8s linear infinite;
+      }
+      .bar2 {
+        background: linear-gradient(270deg, transparent, #03e9f4);
+        animation: animate2 0.8s linear infinite;
+        animation-delay: 0.4s;
+      }
+      .bar3 {
+        background: linear-gradient(180deg, transparent, #03e9f4);
+        animation: animate3 0.8s linear infinite;
+      }
+      .bar4 {
+        background: linear-gradient(0deg, transparent, #03e9f4);
+        animation: animate4 0.8s linear infinite;
+        animation-delay: 0.4s;
+      }
+    }
+  }
+
+  .loader-register {
+    text-align: center;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    width: 99px;
+    height: 180px;
+    overflow: hidden;
+    cursor: pointer;
+    .text {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 33px;
+      top: 6%;
+      line-height: 75px;
+      color: #c74134;
+      text-shadow: 0 0 0.5em #c74134, 0 0 0.2em #5c5c5c;
+      font-weight: bolder;
+    }
+    span {
+      position: absolute;
+      display: block;
+    }
+    .bar1 {
+      border-radius: 20%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 13px;
+      background: linear-gradient(90deg, transparent, #c74134);
+      animation-delay: 0;
+    }
+    .bar3 {
+      border-radius: 20%;
+      bottom: 0;
+      width: 100%;
+      height: 13px;
+      background: linear-gradient(270deg, transparent, #c74134);
+      animation-delay: 0;
+    }
+    .bar2 {
+      border-radius: 20%;
+      right: 0;
+      width: 13px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, #c74134);
+      animation-delay: 1s;
+    }
+    .bar4 {
+      border-radius: 20%;
+      left: 0;
+      width: 13px;
+      height: 100%;
+      background: linear-gradient(0deg, transparent, #c74134);
+      animation-delay: 1s;
+    }
+    &:hover {
+      .bar1 {
+        background: linear-gradient(90deg, transparent, #c74134);
+        animation: animate1 0.8s linear infinite;
+      }
+      .bar2 {
+        background: linear-gradient(270deg, transparent, #c74134);
+        animation: animate2 0.8s linear infinite;
+        animation-delay: 0.4s;
+      }
+      .bar3 {
+        background: linear-gradient(180deg, transparent, #c74134);
+        animation: animate3 0.8s linear infinite;
+      }
+      .bar4 {
+        // background: linear-gradient(0deg, transparent, #c74134);
+        background: linear-gradient(0deg, transparent, #c74134);
+        animation: animate4 0.8s linear infinite;
+        animation-delay: 0.4s;
+      }
+    }
+  }
+}

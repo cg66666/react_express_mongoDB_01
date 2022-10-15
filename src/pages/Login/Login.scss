@@ -1,0 +1,231 @@
+.login-wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  .mask {
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+  }
+  .center-Img {
+    background-image: url("../../static/login.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    width: 100%;
+    height: 435px;
+    position: absolute;
+    left: 0;
+    top: 165px;
+    z-index: -1;
+  }
+  // box-shadow: 2px hotpink;
+  .cancel {
+    color: white;
+    font-size: 25px;
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    transition: all 0.5s;
+    cursor: pointer;
+    &:hover {
+      top: -6px;
+      right: 10px;
+      font-size: 40px;
+    }
+  }
+
+  .login-container {
+    color: white;
+    position: absolute;
+    width: 700px;
+    height: 350px;
+    transform: translateX(-50%) translateY(-50%);
+    left: 50%;
+    top: 50%;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      width: 700px;
+      height: 350px;
+      background-image: url("../../static/login_Border.jpg");
+      background-size: 100%;
+      opacity: 0.7;
+    }
+  }
+  .container {
+    margin-left: 10px;
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    .input-wrap {
+      margin-top: 20px;
+      font-size: 30px;
+      .common-input {
+        margin-left: 15px;
+        font-size: 30px;
+        color: white;
+        background: none;
+        outline: none;
+      }
+    }
+    .login-button {
+      margin-top: 20px;
+      cursor: pointer;
+      width: 100px;
+      height: 20px;
+      border: 1px solid red;
+      border-radius: 20%;
+      margin-left: 20px;
+    }
+  }
+
+  @keyframes opacityChange {
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes rotate {
+    100% {
+      transform: rotate(1turn);
+    }
+  }
+  .item {
+    // background-color: #000;
+    margin-top: 20px;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    font-size: 22px;
+    .text {
+      // border: 5px solid rgba(168, 239, 255, .5);
+      --borderWidth: 4px;
+      --bRadius: 10px;
+      width: 200px;
+      text-align: center;
+      height: 50px;
+      line-height: 50px;
+      position: relative;
+      z-index: 0;
+      overflow: hidden;
+      // padding: 25px;
+      z-index: 0;
+      border-radius: --bRadius;
+      &::after,
+      &::before {
+        box-sizing: border-box;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: -2;
+        left: -23%;
+        top: -90%;
+        width: 150%;
+        height: 300%;
+        background-image: conic-gradient(
+          transparent,
+          rgba(168, 239, 255, 1),
+          transparent 30%
+        );
+        animation: rotate 2s linear infinite;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        left: calc(var(--borderWidth) / 2);
+        top: calc(var(--borderWidth) / 2);
+        width: calc(100% - var(--borderWidth));
+        height: calc(100% - var(--borderWidth));
+        background: #000;
+        border-radius: 5px;
+        /* 这句效果打开有助于理解动画 */
+        /*animation: opacityChange 5s infinite linear;*/
+      }
+    }
+  }
+
+  .item:nth-child(9) div::after {
+    animation: opacityChange 5s infinite linear;
+  }
+
+  .register-wrap {
+    color: white;
+    position: absolute;
+    width: 600px;
+    height: 550px;
+    transform: translateX(-50%) translateY(-50%);
+    left: 50%;
+    top: 50%;
+    // overflow: hidden;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      width: 600px;
+      height: 550px;
+      background-image: url("../../static/register.jpg");
+      background-size: 100%;
+      opacity: 0.8;
+    }
+    .container {
+      margin-left: 10px;
+      position: absolute;
+      width: 80%;
+      height: 70%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      top: 50%;
+      .input-wrap {
+        margin-top: 20px;
+        font-size: 30px;
+        .common-input {
+          margin-left: 15px;
+          font-size: 30px;
+          color: white;
+          background: none;
+          outline: none;
+        }
+        .checkSex {
+          font-size: 25px;
+          margin-left: 20px;
+          margin-right: 10px;
+        }
+        // input {
+        //   transform: scale(1.2);
+        // }
+        #male {
+          transform: scale(1.3);
+        }
+        #female {
+          transform: scale(1.3);
+        }
+      }
+      .login-button {
+        margin-top: 20px;
+        cursor: pointer;
+        width: 100px;
+        height: 20px;
+        border: 1px solid red;
+        border-radius: 20%;
+        margin-left: 20px;
+      }
+    }
+  }
+}
