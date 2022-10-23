@@ -101,15 +101,13 @@ module.exports = function (proxy, allowedHost) {
     },
     // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
     // 配置代理
-    proxy
-    // ,
-    : {
+    proxy: {
       "/reactExpress": {
         target: "http://localhost:9000", // 后台服务地址以及端口号
         ws: true,
         changeOrigin: true, //是否跨域
         pathRewrite: { "^/reactExpress": "/" },
-        secure: false
+        secure: false,
       },
     },
     onBeforeSetupMiddleware(devServer) {

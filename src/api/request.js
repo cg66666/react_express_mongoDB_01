@@ -6,6 +6,8 @@ import Nprogress from "nprogress";
 import "nprogress/nprogress.css";
 //进度条可以修改外观，需要改人家的css
 
+import { getToken, clearUserInfo } from "../utils/handle_Token_UserInfo";
+
 const initRequest = axios.create({
   timeout: 5000,
 });
@@ -38,6 +40,16 @@ const requests = axios.create({
 
 //设置请求拦截器,项目当中经常发请求,请求之前会拦截到，会执行回调
 requests.interceptors.request.use((config) => {
+  console.log("config", config);
+  if (!config.url.includes("/login")) {
+    const token = getToken();
+    if(!token){
+      clearUserInfo();
+      console.log('token缺失，请重新登录！');
+    }else{
+      config.headers.token = token;
+    }
+  }
   //console.log(config);
   //   if (userTempId()) {
   //     config.headers.userTempId = userTempId();
@@ -61,6 +73,7 @@ requests.interceptors.response.use(
     return res.data;
   },
   (error) => {
+    console.log(error);
     // console.log('拦截器这里看到失败了>>>', error);
     Nprogress.done();
     return Promise.reject(error);

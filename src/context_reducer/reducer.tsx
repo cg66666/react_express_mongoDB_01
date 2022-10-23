@@ -1,12 +1,19 @@
 // import React,{Dispatch} from "react";
 export const reducer = (state, action) => {
   const { type, value } = action;
+  // console.log("type", type);
   let temState;
   switch (type) {
-    case "updatePersonalInfo":
+    case "Logining":
       temState = {
         ...state,
-        userInfo: value,
+        toLoginOrNot: true,
+      };
+      break;
+    case "not_Login":
+      temState = {
+        ...state,
+        toLoginOrNot: false,
       };
       break;
     default:

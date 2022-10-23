@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { toRegister, toLogin, getPersonalName } from "../../api";
+import { toRegister, toLogin } from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useToBe } from "src/context_reducer/initContextConfig";
+import { getToken, clearUserInfo, setUserInfo } from "../../utils/handle_Token_UserInfo";
 import md5 from "js-md5";
 import "./Login.scss";
 export function Login(): JSX.Element {
-  const { userInfo, dispatch } = useToBe();
+  const { dispatch } = useToBe();
   const params = useParams();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -63,13 +64,15 @@ export function Login(): JSX.Element {
                       password: md5(password),
                     }).then(
                       (res) => {
-                        // console.log(res);
-                        getPersonalName().then((res) => {
-                          dispatch({ type: "updatePersonalInfo", value: res });
-                        });
+                        console.log(res);
+                        setUserInfo(res)
+                        console.log("登录成功");
+                        dispatch({ type: "Logining" });
                       },
-                      (err) => {
-                        console.log(err);
+                      () => {
+                        clearUserInfo();
+                        dispatch({ type: "not_Login" });
+                        console.log("登陆失败！");
                       }
                     );
                 }}
@@ -174,13 +177,15 @@ export function Login(): JSX.Element {
                       name,
                     }).then(
                       (res) => {
-                        getPersonalName().then((res) => {
-                          dispatch({ type: "updatePersonalInfo", value: res });
-                        });
-                        // dispatch({ type: "updatePersonalInfo", value: res });
+                        console.log(res);
+                        setUserInfo(res)
+                        console.log("注册成功！");
+                        dispatch({ type: "Logining" });
                       },
-                      (err) => {
-                        console.log(err);
+                      () => {
+                        clearUserInfo();
+                        dispatch({ type: "not_Login" });
+                        console.log("注册失败！");
                       }
                     );
                 }}

@@ -20,13 +20,13 @@ export const getSomeText = () =>
  */
 export const toRegister = (data) =>
   new Promise(async (resolve, reject) => {
-    const a = await requests({
+    const res = await requests({
       url: "/login/toRegister",
       method: "post",
       data,
     });
-    if (a) {
-      resolve("获取成功");
+    if (res) {
+      resolve(res);
     }
     reject("获取失败");
   });
@@ -36,23 +36,33 @@ export const toRegister = (data) =>
 */
 export const toLogin = (data) =>
   new Promise(async (resolve, reject) => {
-    const a = await requests({ url: "/login/toLogin", method: "post", data });
-    if (a) {
-      resolve("获取成功");
+    const res =
+      (await requests({ url: "/login/toLogin", method: "post", data })) || "";
+    if (res) {
+      resolve(res);
+    } else {
+      console.log("登陆失败！");
+      reject("获取失败");
     }
-    reject("获取失败");
   });
-// requests({ url: "/login/toLogin", method: "post", data });
 /* 
   获取登录信息（登陆状态）
 */
-export const getPersonalName = () =>
-  new Promise(async (resolve, reject) => {
-    console.log("自动开始执行自动获取！！！");
-    const userInfo = await requests({ url: "/getName", method: "get" });
-    // console.log(a);
-    if (userInfo) {
-      resolve(userInfo);
-    }
-    reject("返回失败！！！");
-  });
+// export const getPersonalName = () =>
+//   new Promise((resolve, reject) => {
+//     console.log("自动开始执行自动获取！！！");
+//     requests({ url: "/getName", method: "get" }).then(
+//       (res) => {
+//         resolve(res);
+//       },
+//       (err) => {
+//         console.log("返回失败", err);
+//         reject("返回失败！！！");
+//       }
+//     );
+//     // console.log('userInfo>>>', userInfo);
+//     // if (userInfo) {
+
+//     // }
+//     // reject("返回失败！！！");
+//   });

@@ -4,9 +4,10 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 // const logger = require("morgan");
 const session = require("express-session");
-const invalidateSession = require("./controler/invalidateSession");
+const invalidateUserInfo = require("./controler/invalidateUserInfo");
 // var indexRouter = require('./routes/index');
 const usersRouter = require("./routes/login");
+const getPersonalInfo = require('./controler/getPersonalInfo')
 // const { User } = require("./model/User");
 
 const app = express();
@@ -29,8 +30,11 @@ app.use(
   })
 );
 
-app.use("/getName", invalidateSession);
-
+// app.use("/", invalidateUserInfo);
+// app.use("", (req,res,next)=>{
+//   console.log('看一看校验',req.headers);
+//   next();
+// });
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
@@ -42,9 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/getName')
-
-// app.use('/', indexRouter);
+// app.use('/getName',getPersonalInfo);
 app.use("/login", usersRouter);
 
 // catch 404 and forward to error handler
