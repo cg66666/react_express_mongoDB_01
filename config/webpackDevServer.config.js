@@ -12,7 +12,9 @@ const host = process.env.HOST || "0.0.0.0";
 const sockHost = process.env.WDS_SOCKET_HOST;
 const sockPath = process.env.WDS_SOCKET_PATH; // default: '/ws'
 const sockPort = process.env.WDS_SOCKET_PORT;
-
+// console.log('sockHost',sockHost);
+// console.log('sockHost',sockHost);
+// console.log('sockHost',sockHost);
 module.exports = function (proxy, allowedHost) {
   const disableFirewall =
     !proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === "true";
@@ -104,11 +106,19 @@ module.exports = function (proxy, allowedHost) {
     proxy: {
       "/reactExpress": {
         target: "http://localhost:9000", // 后台服务地址以及端口号
-        ws: true,
+        ws: false,
+        // client
         changeOrigin: true, //是否跨域
         pathRewrite: { "^/reactExpress": "/" },
         secure: false,
       },
+      '/socket':{
+        target: 'ws://localhost:9000',
+        ws: true,
+        changeOrigin: true, //是否跨域
+        // secure: false,
+        pathRewrite: { "^/socket": "/" },
+      }
     },
     onBeforeSetupMiddleware(devServer) {
       // Keep `evalSourceMapMiddleware`

@@ -1,9 +1,10 @@
-import React from "react";
+import React,{Fragment} from "react";
 import { Route, Routes } from "react-router-dom";
 import { Forum, Knowledge, Login, Music, Person, Game, Home } from "src/pages";
+import './routes.scss'
 export function PageRouter(): JSX.Element {
   return (
-    <div>
+    <Fragment >
       <Routes>
         <Route path="/forum" element={<Forum />}></Route>
         <Route path="/knowledge" element={<Knowledge />}></Route>
@@ -13,6 +14,7 @@ export function PageRouter(): JSX.Element {
         <Route path="/game" element={<Game />}></Route>
         <Route path="*" element={<Home/>}></Route>
       </Routes>
-    </div>
+    </Fragment>
   );
 }
+

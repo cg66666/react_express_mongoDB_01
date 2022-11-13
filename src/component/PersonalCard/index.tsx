@@ -4,12 +4,10 @@
 import React, { useEffect, useState } from "react";
 // import { getPersonalName } from "src/api";
 import { useToBe } from "src/context_reducer/initContextConfig";
-import { getToken, clearUserInfo } from "../../utils/handle_Token_UserInfo";
 // import { userInfo } from "src/const";
 import "./index.scss";
 export function PersonalCard(): JSX.Element {
   const { toLoginOrNot, dispatch } = useToBe();
-  
   const [greet, setGreet] = useState("");
   const [name, setName] = useState("");
   const [sex, setSex] = useState("");
@@ -21,6 +19,8 @@ export function PersonalCard(): JSX.Element {
       localStorage.removeItem("name");
       localStorage.removeItem("username");
       localStorage.removeItem("loginStatus");
+      localStorage.removeItem("token");
+      localStorage.removeItem("userId");
       setGreet("");
       setName("");
       setSex("");
@@ -44,12 +44,16 @@ export function PersonalCard(): JSX.Element {
     return false;
   };
   useEffect(() => {
+    console.log();
+    
     // 登录失败这种情况这负责清空这个组件里面的内容即可
     const userInfo = handlePersonalInfo("getAndSet");
     if (!userInfo) {
       // 清空本地存储数据
       handlePersonalInfo('clear')
       console.log("跳转登录页");
+    }else{
+      dispatch({ type: "Logining" });
     }
     // }
   }, [toLoginOrNot]);

@@ -7,10 +7,15 @@ const TokenSchema = new mongoose.Schema({
     type: String,
     unique: true,
   },
+  userId: {
+    type: String,
+    unique: true,
+  },
   createTime: {
-    type: Date,
-    default: Date.now,
-  }
+    type: Number,
+    // default: Date.now,
+  },
+
 });
 
 // 建立用户数据库模型

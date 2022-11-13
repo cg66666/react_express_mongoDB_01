@@ -8,18 +8,22 @@ const invalidateUserInfo = require("./controler/invalidateUserInfo");
 // var indexRouter = require('./routes/index');
 const usersRouter = require("./routes/login");
 const getPersonalInfo = require('./controler/getPersonalInfo')
+const expressWs = require('express-ws') // 引入 WebSocket 包
+const forumRouter = require('./routes/forum');
 // const { User } = require("./model/User");
 
 const app = express();
+expressWs(app) // 将 WebSocket 服务混入 app，相当于为 app 添加 .ws 方法
 // app.pduration = 60000 * 120
 // app.prototype.duration = 60000 * 120;
 // 配置session
+// todo: session会在服务器重启的时候丢失！！！
 app.use(
   session({
     secret: "12345-67890-09876-54321", // 必选配置
     resave: false, //必选，建议false，只要保存登录状态的用户，减少无效数据。
     saveUninitialized: false, //必选，建议false，只要保存登录状态的用户，减少无效数据。
-    cookie: { secure: false, maxAge: 800000, httpOnly: false }, // 可选，配置cookie的选项，具体可以参考文章的配置内容。
+    cookie: { secure: false, maxAge: 7200000, httpOnly: false }, // 可选，配置cookie的选项，具体可以参考文章的配置内容。
     name: "login-session", // 可选，设置个session的名字
     rolling: true,
     // store: new MongoStore({
@@ -30,7 +34,7 @@ app.use(
   })
 );
 
-// app.use("/", invalidateUserInfo);
+
 // app.use("", (req,res,next)=>{
 //   console.log('看一看校验',req.headers);
 //   next();
@@ -45,9 +49,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
+// app.use("/", invalidateUserInfo);
+app.use("/forum", invalidateUserInfo);
 
 // app.use('/getName',getPersonalInfo);
 app.use("/login", usersRouter);
+app.use("/forum", forumRouter);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
@@ -69,5 +76,35 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   // res.render("error");
 });
+
+// websocket 的处理
+// app.ws('/forum', function (ws, req) {
+//   console.log('connect success')
+//   // console.log(ws)
+  
+//   // 使用 ws 的 send 方法向连接另一端的客户端发送数据
+//   ws.send('connect to express server with WebSocket success')
+
+//   // 使用 on 方法监听事件
+//   //   message 事件表示从另一段（服务端）传入的数据
+//   ws.on('message', function (msg) {
+//     console.log(`receive message ${msg}`)
+//     ws.send('default response')
+//   })
+
+//   // 设置定时发送消息
+//   let timer = setInterval(() => {
+//     console.log('执行了！！！');
+//     ws.send(`interval message ${new Date()}`)
+//   }, 2000)
+
+//   // close 事件表示客户端断开连接时执行的回调函数
+//   ws.on('close', function (e) {
+//     console.log('close connection')
+//     clearInterval(timer)
+//     timer = undefined
+//   })
+// })
+
 
 module.exports = app;

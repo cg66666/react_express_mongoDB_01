@@ -1,23 +1,21 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo,Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToBe } from "src/context_reducer/initContextConfig";
 import "./Home.scss";
 export function Home(): JSX.Element {
   const { toLoginOrNot, dispatch } = useToBe();
   let loginStatus = useMemo(() => {
-    console.log("登录显示变量触发！！！", toLoginOrNot);
-
+    // console.log("登录显示变量触发！！！", toLoginOrNot);
     return toLoginOrNot;
   }, [toLoginOrNot]);
   // useEffect(()=>{
   //   loginStatus.current = toLoginOrNot;
   // },[toLoginOrNot])
   // const [loginStatus,setLoginStatus] = useEffect
-  console.log(toLoginOrNot);
 
   const navigate = useNavigate();
   return (
-    <div>
+    <Fragment>
       <div className="center-Img">
         {loginStatus ? (
           <></>
@@ -46,6 +44,6 @@ export function Home(): JSX.Element {
           </div>
         )}
       </div>
-    </div>
+    </Fragment>
   );
 }

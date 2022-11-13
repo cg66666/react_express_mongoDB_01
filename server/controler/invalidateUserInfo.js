@@ -5,20 +5,24 @@ const duration = 60000 * 120;
 const invalidateUserInfo = function (req, res, next) {
   console.log(req.headers.token);
   console.log(req.session.status);
-  console.log(req.session.status === "登陆成功");
-  if (req.headers.token && req.session.status === "登陆成功") {
+  // 这里防止服务器重启session丢失
+  // if (req.headers.token && req.session.status === "登陆成功") {
+  if (req.headers.token) {
     Token.find({ token: req.headers.token }, "createTime", (err, tokenTime) => {
       console.log(err);
       if (err) {
         next(createError(401));
-      } else {
-        console.log(tokenTime);
-        // req.session.status = new Date().getTime();
-        // req.name = result.name;
-        // req.sex = result.sex;
-        // console.log("有session，通过");
-        next();
       }
+      if (tokenTime.createTime + 7200000 < Date.now()) {
+        console.log(token已过期);
+        next(createError(401));
+      }
+      // console.log(tokenTime);
+      // req.session.status = new Date().getTime();
+      // req.name = result.name;
+      // req.sex = result.sex;
+      console.log("有session，通过");
+      next();
     });
   } else {
     next(createError(401));

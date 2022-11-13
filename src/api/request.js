@@ -6,7 +6,7 @@ import Nprogress from "nprogress";
 import "nprogress/nprogress.css";
 //进度条可以修改外观，需要改人家的css
 
-import { getToken, clearUserInfo } from "../utils/handle_Token_UserInfo";
+import { getUserInfo, clearUserInfo } from "../utils/handle_Token_UserInfo";
 
 const initRequest = axios.create({
   timeout: 5000,
@@ -32,7 +32,7 @@ initRequest.interceptors.response.use(
 //request实质就是axios
 const requests = axios.create({
   //基础路径,当在利用request[axios]发请求的时候，在域名之后加上路径
-  //http://128.0.0.2:3000/api
+  //http://128.0.0.2:3000/apigetToken
   baseURL: "/reactExpress",
   //超时的设置
   timeout: 5000,
@@ -42,12 +42,13 @@ const requests = axios.create({
 requests.interceptors.request.use((config) => {
   console.log("config", config);
   if (!config.url.includes("/login")) {
-    const token = getToken();
-    if(!token){
+    const userInfo = getUserInfo();
+    if (!userInfo) {
       clearUserInfo();
-      console.log('token缺失，请重新登录！');
-    }else{
-      config.headers.token = token;
+      console.log("token缺失，请重新登录！");
+    } else {
+      config.headers.token = userInfo.token;
+      config.headers.userId = userInfo.userId;
     }
   }
   //console.log(config);
@@ -70,13 +71,12 @@ requests.interceptors.response.use(
     //{code:200,message:'成功',data:{}}
     //进度条结束
     Nprogress.done();
-    return res.data;
+    return Promise.resolve(res.data);
   },
-  (error) => {
-    console.log(error);
-    // console.log('拦截器这里看到失败了>>>', error);
+  (err) => {
+    console.log("err ", err.response.data);
     Nprogress.done();
-    return Promise.reject(error);
+    return Promise.reject(err.response.data);
   }
 );
 

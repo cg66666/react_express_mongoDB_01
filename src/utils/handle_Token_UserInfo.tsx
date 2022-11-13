@@ -1,5 +1,8 @@
-export function getToken() {
-  return localStorage.getItem("token");
+export function getUserInfo() {
+  const token = localStorage.getItem("token");
+  const id = localStorage.getItem("userId");
+
+  return {token,id};
 }
 export function clearUserInfo() {
   localStorage.removeItem("loginStatus");
@@ -10,9 +13,11 @@ export function clearUserInfo() {
 }
 
 export function setUserInfo(userInfo) {
-  localStorage.setItem("loginStatus", '111');
+  console.log("进来了！！！");
+  localStorage.setItem("loginStatus", "111");
   localStorage.setItem("token", userInfo.token);
   localStorage.setItem("name", userInfo.name);
   localStorage.setItem("sex", userInfo.sex);
   localStorage.setItem("greet", userInfo.greet);
+  localStorage.setItem("userId", userInfo.id);
 }

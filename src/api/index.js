@@ -20,15 +20,16 @@ export const getSomeText = () =>
  */
 export const toRegister = (data) =>
   new Promise(async (resolve, reject) => {
-    const res = await requests({
-      url: "/login/toRegister",
-      method: "post",
-      data,
-    });
-    if (res) {
+    try {
+      const res = await requests({
+        url: "/login/toRegister",
+        method: "post",
+        data,
+      });
       resolve(res);
+    } catch (err) {
+      reject(err);
     }
-    reject("获取失败");
   });
 
 /* 
@@ -36,14 +37,29 @@ export const toRegister = (data) =>
 */
 export const toLogin = (data) =>
   new Promise(async (resolve, reject) => {
-    const res =
-      (await requests({ url: "/login/toLogin", method: "post", data })) || "";
-    if (res) {
+    try {
+      const res =
+        (await requests({ url: "/login/toLogin", method: "post", data })) || "";
       resolve(res);
-    } else {
-      console.log("登陆失败！");
-      reject("获取失败");
+    } catch (err) {
+      reject(err);
     }
+  });
+/* 
+  获取论坛信息
+*/
+export const getForum = () =>
+  new Promise((resolve, reject) => {
+    requests({ url: "/forum/getComment", method: "get" })
+      .then((res) => {
+        console.log(res);
+        resolve();
+      })
+      .catch((err) => {
+        console.log("请求论坛信息挂了");
+        reject();
+        // console.log();
+      });
   });
 /* 
   获取登录信息（登陆状态）

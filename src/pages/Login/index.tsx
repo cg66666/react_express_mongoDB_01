@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { toRegister, toLogin } from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useToBe } from "src/context_reducer/initContextConfig";
-import { getToken, clearUserInfo, setUserInfo } from "../../utils/handle_Token_UserInfo";
+import {
+  clearUserInfo,
+  setUserInfo,
+} from "../../utils/handle_Token_UserInfo";
+import { message } from "antd";
 import md5 from "js-md5";
 import "./Login.scss";
 export function Login(): JSX.Element {
@@ -65,14 +69,15 @@ export function Login(): JSX.Element {
                     }).then(
                       (res) => {
                         console.log(res);
-                        setUserInfo(res)
+                        setUserInfo(res);
                         console.log("登录成功");
                         dispatch({ type: "Logining" });
+                        navigate("/home");
                       },
-                      () => {
+                      (err) => {
+                        message.error(err)
                         clearUserInfo();
                         dispatch({ type: "not_Login" });
-                        console.log("登陆失败！");
                       }
                     );
                 }}
@@ -166,10 +171,7 @@ export function Login(): JSX.Element {
               <div
                 className="item"
                 onClick={() => {
-                  isSamePassword &&
-                    sex &&
-                    username &&
-                    password &&
+                  if (isSamePassword && sex && username && password && username.length < 16) { 
                     toRegister({
                       username: md5(username),
                       password: md5(password),
@@ -178,16 +180,20 @@ export function Login(): JSX.Element {
                     }).then(
                       (res) => {
                         console.log(res);
-                        setUserInfo(res)
+                        setUserInfo(res);
                         console.log("注册成功！");
                         dispatch({ type: "Logining" });
+                        navigate("/home");
                       },
-                      () => {
+                      (err) => {
+                        message.error(err)
                         clearUserInfo();
                         dispatch({ type: "not_Login" });
-                        console.log("注册失败！");
                       }
                     );
+                  } else {
+                    message.warn("您输入的注册信息有误，请仔细核对");
+                  }
                 }}
               >
                 <div className="text">注册</div>
