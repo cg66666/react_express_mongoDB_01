@@ -64,7 +64,7 @@ export function Login(): JSX.Element {
                   username &&
                     password &&
                     toLogin({
-                      username: md5(username),
+                      username: username,
                       password: md5(password),
                     }).then(
                       (res) => {
@@ -173,7 +173,7 @@ export function Login(): JSX.Element {
                 onClick={() => {
                   if (isSamePassword && sex && username && password && username.length < 16) { 
                     toRegister({
-                      username: md5(username),
+                      username: username,
                       password: md5(password),
                       sex,
                       name,

@@ -53,11 +53,11 @@ export const getForum = () =>
     requests({ url: "/forum/getComment", method: "get" })
       .then((res) => {
         console.log(res);
-        resolve();
+        resolve(res);
       })
       .catch((err) => {
         console.log("请求论坛信息挂了");
-        reject();
+        reject(err);
         // console.log();
       });
   });

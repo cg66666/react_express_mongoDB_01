@@ -112,12 +112,12 @@ module.exports = function (proxy, allowedHost) {
         pathRewrite: { "^/reactExpress": "/" },
         secure: false,
       },
-      '/socket':{
+      '/wsSocket':{
         target: 'ws://localhost:9000',
         ws: true,
         changeOrigin: true, //是否跨域
         // secure: false,
-        pathRewrite: { "^/socket": "/" },
+        pathRewrite: { "^/wsSocket": "/" },
       }
     },
     onBeforeSetupMiddleware(devServer) {

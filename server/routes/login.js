@@ -13,11 +13,11 @@ router.post("/toRegister", async (req, res, next) => {
   console.log("注册阶段：>>>");
   console.log("注册的账号>>>", req.body.username);
   console.log("注册的密码>>>", req.body.password);
-  const token = bcrypt.hashSync(String(new Date().getTime()), salt);
+  const token = bcrypt.hashSync(String(+new Date()), salt);
   Token.create(
     {
       token: token,
-      createTime: Date.now()
+      // createTime: Date.now()
     },
     (err2, tokenInfo) => {
       if (err2) {
@@ -33,7 +33,6 @@ router.post("/toRegister", async (req, res, next) => {
             salt,
           },
           (err1, userInfo) => {
-            console.log(userInfo.id);
             if (err1) {
               if (
                 err1.message.includes(
@@ -109,16 +108,16 @@ router.post("/toLogin", async (req, res, next) => {
           },
           () => {
             const token = bcrypt.hashSync(
-              String(new Date().getTime()),
+              String(+new Date()),
               userInfo.salt
             );
             Token.create(
               {
                 token: token,
-                createTime: Date.now()
+                // createTime: new Date()
               },
               (err2, tokenInfo) => {
-                console.log("Token>>>", tokenInfo);
+                console.log("Token>>>", tokenInfo); 
                 if (err2) {
                   console.log(err2);
                   return res.status(400).send("登录失败！");

@@ -3,7 +3,8 @@ const { Token } = require("../model/Token");
 const { User } = require("../model/User");
 const duration = 60000 * 120;
 const invalidateUserInfo = function (req, res, next) {
-  console.log(req.headers.token);
+  // todo: 奇怪，这里新增的怎么都变成小写了？
+  console.log('header',req.headers.userid);
   console.log(req.session.status);
   // 这里防止服务器重启session丢失
   // if (req.headers.token && req.session.status === "登陆成功") {
@@ -13,7 +14,7 @@ const invalidateUserInfo = function (req, res, next) {
       if (err) {
         next(createError(401));
       }
-      if (tokenTime.createTime + 7200000 < Date.now()) {
+      if (tokenTime.createTime + 7200000 < +new Date()) {
         console.log(token已过期);
         next(createError(401));
       }

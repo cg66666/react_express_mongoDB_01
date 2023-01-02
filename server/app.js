@@ -10,6 +10,7 @@ const usersRouter = require("./routes/login");
 const getPersonalInfo = require('./controler/getPersonalInfo')
 const expressWs = require('express-ws') // 引入 WebSocket 包
 const forumRouter = require('./routes/forum');
+const wsSocketRouter = require('./routes/wsSocket');
 // const { User } = require("./model/User");
 
 const app = express();
@@ -55,6 +56,8 @@ app.use("/forum", invalidateUserInfo);
 // app.use('/getName',getPersonalInfo);
 app.use("/login", usersRouter);
 app.use("/forum", forumRouter);
+app.use("/wsSocket", wsSocketRouter);
+
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

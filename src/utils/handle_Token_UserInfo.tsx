@@ -1,8 +1,8 @@
 export function getUserInfo() {
   const token = localStorage.getItem("token");
-  const id = localStorage.getItem("userId");
+  const userId = localStorage.getItem("userId");
 
-  return {token,id};
+  return {token,userId};
 }
 export function clearUserInfo() {
   localStorage.removeItem("loginStatus");
